@@ -1,0 +1,219 @@
+[options]
+library = "Poppler"
+version = "0.18"
+target_path = "."
+min_cfg_version = "0.70"
+girs_directories = ["../gir-files", "../"]
+work_mode = "normal"
+deprecate_by_min_version = true
+single_version_file = true
+
+external_libraries = [
+	"Gio",
+	"GLib",
+	"GObject",
+	"Cairo",
+]
+
+manual = [
+	"Gio.Cancellable",
+	"Gio.File",
+	"Gio.InputStream",
+	"GLib.Bytes",
+	"GLib.Date",
+	"GLib.DateTime",
+	"GLib.Error",
+	"cairo.Context",
+	"cairo.Surface",
+	"cairo.Region",
+	"Poppler.PageRange",
+]
+
+generate = [
+	"Poppler.ActionLayerAction",
+	"Poppler.ActionMovieOperation",
+	"Poppler.ActionType",
+	"Poppler.AdditionalActionType",
+	"Poppler.AnnotCalloutLine",
+	"Poppler.AnnotExternalDataType",
+	"Poppler.AnnotFileAttachment",
+	"Poppler.AnnotFlag",
+	"Poppler.AnnotFreeText",
+	"Poppler.AnnotFreeTextQuadding",
+	"Poppler.AnnotMapping",
+	"Poppler.AnnotMarkup",
+	"Poppler.AnnotMarkupReplyType",
+	"Poppler.AnnotTextState",
+	"Poppler.AnnotType",
+	"Poppler.Attachment",
+	"Poppler.Backend",
+	"Poppler.CertificateStatus",
+	"Poppler.Dest",
+	"Poppler.DestType",
+	"Poppler.FindFlags",
+	"Poppler.FontInfo",
+	"Poppler.FontType",
+	"Poppler.FontsIter",
+	"Poppler.FormButtonType",
+	"Poppler.FormChoiceType",
+	"Poppler.FormField",
+	"Poppler.FormFieldMapping",
+	"Poppler.FormFieldType",
+	"Poppler.FormTextType",
+	"Poppler.ImageMapping",
+	"Poppler.IndexIter",
+	"Poppler.Layer",
+	"Poppler.LayersIter",
+	"Poppler.LinkMapping",
+	"Poppler.Media",
+	"Poppler.MoviePlayMode",
+	"Poppler.PageLayout",
+	"Poppler.PageMode",
+	"Poppler.PageTransition",
+	"Poppler.PageTransitionType",
+	"Poppler.PageTransitionAlignment",
+	"Poppler.PageTransitionDirection",
+	"Poppler.Permissions",
+	"Poppler.PDFConformance",
+	"Poppler.PDFPart",
+	"Poppler.PDFSubtype",
+	"Poppler.PrintDuplex",
+	"Poppler.PrintFlags",
+	"Poppler.PrintScaling",
+	"Poppler.PSFile",
+	"Poppler.SelectionStyle",
+	"Poppler.SignatureInfo",
+	"Poppler.SignatureValidationFlags",
+	"Poppler.SignatureStatus",
+	"Poppler.StructureBlockAlign",
+	"Poppler.StructureBorderStyle",
+	"Poppler.StructureElement",
+	"Poppler.StructureFormRole",
+	"Poppler.StructureFormState",
+	"Poppler.StructureGlyphOrientation",
+	"Poppler.StructureInlineAlign",
+	"Poppler.StructureElementKind",
+	"Poppler.StructureListNumbering",
+	"Poppler.StructurePlacement",
+	"Poppler.StructureRubyAlign",
+	"Poppler.StructureRubyPosition",
+	"Poppler.StructureTableScope",
+	"Poppler.StructureGetTextFlags",
+	"Poppler.StructureTextAlign",
+	"Poppler.StructureTextDecoration",
+	"Poppler.StructureWritingMode",
+	"Poppler.StructureElementIter",
+	"Poppler.TextAttributes",
+	"Poppler.TextSpan",
+	"Poppler.ViewerPreferences",
+]
+
+[[object]]
+name = "Poppler.*"
+status = "generate"
+	[[object.function]]
+	name = "date_parse"
+	ignore = true
+	[[object.function]]
+	name = "get_available_signing_certificates"
+	version = "23.7"
+
+[[object]]
+name = "Poppler.Annot"
+status = "generate"
+	[[object.function]]
+	name = "set_color"
+		[[object.function.parameter]]
+		name = "poppler_color"
+		const = true
+
+[[object]]
+name = "Poppler.AnnotCircle"
+status = "generate"
+	[[object.function]]
+	name = "set_interior_color"
+		[[object.function.parameter]]
+		name = "poppler_color"
+		const = true
+
+[[object]]
+name = "Poppler.Color"
+status = "generate"
+boxed_inline = true
+
+[[object]]
+name = "Poppler.Document"
+status = "generate"
+generate_builder = true
+	[[object.function]]
+	name = "get_print_page_ranges"
+	manual = true
+
+[[object]]
+name = "Poppler.Movie"
+status = "generate"
+	[[object.function]]
+	name = "get_aspect"
+	manual = true # wrong in-out annotations
+
+[[object]]
+name = "Poppler.Page"
+status = "generate"
+
+	[[object.function]]
+	pattern = "(render|render_for_printing|render_for_printing_with_options|render_selection)"
+		[[object.function.parameter]]
+		name = "cairo"
+		const = true
+
+	[[object.function]]
+	name = "get_text_layout"
+	ignore = true
+
+	[[object.function]]
+	name = "get_text_layout_for_area"
+	ignore = true
+
+	[[object.function]]
+	name = "get_crop_box"
+	ignore = true
+
+	[[object.function]]
+	name = "get_bounding_box"
+	rename = "get_bounding_box"
+
+	[[object.function]]
+	pattern = "(free_annot_mapping|free_text_attributes|free_image_mapping|free_form_field_mapping|free_link_mapping)"
+	ignore = true # unsafe probably
+
+[[object]]
+name = "Poppler.Point"
+status = "generate"
+boxed_inline = true
+
+[[object]]
+name = "Poppler.Quadrilateral"
+status = "generate"
+boxed_inline = true
+
+[[object]]
+name = "Poppler.Rectangle"
+status = "generate"
+boxed_inline = true
+
+[[object]]
+name = "Poppler.Error"
+status = "generate"
+	[[object.member]]
+	name = "signing"
+	version = "23.7"
+
+[[object]]
+name = "Poppler.CertificateInfo"
+status = "generate"
+version = "23.7"
+
+[[object]]
+name = "Poppler.SigningData"
+status = "generate"
+version = "23.7"
