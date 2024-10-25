@@ -208,16 +208,7 @@ impl Document {
     #[doc(alias = "poppler_document_get_creation_date")]
     #[doc(alias = "get_creation_date")]
     #[doc(alias = "creation-date")]
-    #[cfg(not(target_os = "windows"))]
     pub fn creation_date(&self) -> libc::c_long {
-        unsafe { ffi::poppler_document_get_creation_date(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "poppler_document_get_creation_date")]
-    #[doc(alias = "get_creation_date")]
-    #[doc(alias = "creation-date")]
-    #[cfg(target_os = "windows")]
-    pub fn creation_date(&self) -> libc::c_longlong {
         unsafe { ffi::poppler_document_get_creation_date(self.to_glib_none().0) }
     }
 
@@ -283,15 +274,7 @@ impl Document {
 
     #[doc(alias = "poppler_document_get_modification_date")]
     #[doc(alias = "get_modification_date")]
-    #[cfg(not(target_os = "windows"))]
     pub fn modification_date(&self) -> libc::c_long {
-        unsafe { ffi::poppler_document_get_modification_date(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "poppler_document_get_modification_date")]
-    #[doc(alias = "get_modification_date")]
-    #[cfg(target_os = "windows")]
-    pub fn modification_date(&self) -> libc::c_longlong {
         unsafe { ffi::poppler_document_get_modification_date(self.to_glib_none().0) }
     }
 
@@ -580,22 +563,11 @@ impl Document {
 
     #[doc(alias = "poppler_document_set_creation_date")]
     #[doc(alias = "creation-date")]
-    #[cfg(not(target_os="windows"))]
     pub fn set_creation_date(&self, creation_date: libc::c_long) {
         unsafe {
             ffi::poppler_document_set_creation_date(self.to_glib_none().0, creation_date);
         }
     }
-
-    #[doc(alias = "poppler_document_set_creation_date")]
-    #[doc(alias = "creation-date")]
-    #[cfg(target_os="windows")]
-    pub fn set_creation_date(&self, creation_date: libc::c_longlong) {
-        unsafe {
-            ffi::poppler_document_set_creation_date(self.to_glib_none().0, creation_date);
-        }
-    }
-
 
     #[cfg(feature = "v20_9")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v20_9")))]
@@ -626,16 +598,7 @@ impl Document {
     }
 
     #[doc(alias = "poppler_document_set_modification_date")]
-    #[cfg(not(target_os="windows"))]
     pub fn set_modification_date(&self, modification_date: libc::c_long) {
-        unsafe {
-            ffi::poppler_document_set_modification_date(self.to_glib_none().0, modification_date);
-        }
-    }
-
-    #[doc(alias = "poppler_document_set_modification_date")]
-    #[cfg(target_os="windows")]
-    pub fn set_modification_date(&self, modification_date: libc::c_longlong) {
         unsafe {
             ffi::poppler_document_set_modification_date(self.to_glib_none().0, modification_date);
         }
