@@ -208,7 +208,7 @@ impl Document {
     #[doc(alias = "poppler_document_get_creation_date")]
     #[doc(alias = "get_creation_date")]
     #[doc(alias = "creation-date")]
-    pub fn creation_date(&self) -> libc::c_long {
+    pub fn creation_date(&self) -> libc::time_t {
         unsafe { ffi::poppler_document_get_creation_date(self.to_glib_none().0) }
     }
 
@@ -274,7 +274,7 @@ impl Document {
 
     #[doc(alias = "poppler_document_get_modification_date")]
     #[doc(alias = "get_modification_date")]
-    pub fn modification_date(&self) -> libc::c_long {
+    pub fn modification_date(&self) -> libc::time_t {
         unsafe { ffi::poppler_document_get_modification_date(self.to_glib_none().0) }
     }
 
@@ -563,7 +563,7 @@ impl Document {
 
     #[doc(alias = "poppler_document_set_creation_date")]
     #[doc(alias = "creation-date")]
-    pub fn set_creation_date(&self, creation_date: libc::c_long) {
+    pub fn set_creation_date(&self, creation_date: libc::time_t) {
         unsafe {
             ffi::poppler_document_set_creation_date(self.to_glib_none().0, creation_date);
         }
@@ -598,7 +598,7 @@ impl Document {
     }
 
     #[doc(alias = "poppler_document_set_modification_date")]
-    pub fn set_modification_date(&self, modification_date: libc::c_long) {
+    pub fn set_modification_date(&self, modification_date: libc::time_t) {
         unsafe {
             ffi::poppler_document_set_modification_date(self.to_glib_none().0, modification_date);
         }
